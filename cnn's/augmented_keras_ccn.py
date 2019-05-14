@@ -88,3 +88,5 @@ plt.plot(range(1, 11), history.acc)
 plt.xlabel('Epochs')
 plt.ylabel('Accuracy')
 plt.show()
+
+model.save('Documents/Plantr/models/augmented_keras_cnn_model.h5')

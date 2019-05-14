@@ -53,7 +53,6 @@ image_label_ds = tf.data.Dataset.zip((image_ds, label_ds))
 
 BATCH_SIZE = 32
 
-
 ds = image_label_ds.apply(
     tf.data.experimental.shuffle_and_repeat(buffer_size=image_count))
 ds = ds.batch(BATCH_SIZE)
@@ -95,3 +94,5 @@ model.compile(optimizer=tf.keras.optimizers.Adam(),
 
 steps_per_epoch = int(tf.math.ceil(len(all_image_paths)/BATCH_SIZE).numpy())
 model.fit(ds, epochs=15, steps_per_epoch=steps_per_epoch)
+
+model.save('Documents/Plantr/models/tensors_nn_model.h5')

@@ -9,7 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
-model = tf.keras.models.load_model('Documents/Plantr/NN_model.h5')
+model = tf.keras.models.load_model(
+    'Documents/Plantr/models/nparrays_nn_model.h5')
 
 with open('Documents/Plantr/data_arrays/my_image_dataset', 'rb') as data:
     all_final_images = pickle.load(data)
