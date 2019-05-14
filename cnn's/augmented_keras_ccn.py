@@ -31,9 +31,15 @@ class_care = ("bright indirect sunlight, water deeply but infrequently, keep in 
                "medium light with protection from midday sun, keep humidity very high, water when soil is dry to touch", 
                "water thoroughly only when soil is dry to touch, keep in temperatures(F) above 60", 
                "requires high humidity, only give indirect sun, water regularly",
-               "jade_plant", "lucky_bamboo", "money_tree",
-               "parlor_palm", "peace_lily", "sago_palm",
-               "snake_plant", "spider_plant", "venus_fly_trap")
+               "needs 4 hours of direct sunlight each day, keep soil moist but not wet, avoid water on the leaves and only water with filtered water", 
+               "water sparingly, keep out of direct sunlight, remove dead leaves", 
+               "give bright and indirect light, keep in moderate humidity, let soil dry out between waterings but water thoroughly",
+               "keep in high humidity and low light, water freely but reduce in the winter, keep soil moist but well drained", 
+               "keep in indirectly well-lit area, keep soil moist, give high humidity and mist their leaves, keep in temperatures(F) above 60", 
+               "keep in warm and humid conditions, let it dry out between waterings and don't water often",
+               "keep in indirect light, allow soil to dry between waterings, avoid getting leaves wet", 
+               "keep in indirect light, water well but don't allow sogginess, maintain average room temperature and humidity ", 
+               "give 12 hours of direct sunlight, feed insects if they appear unhealthy, water with distilled or rainwater")
 
 class_labels = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 
