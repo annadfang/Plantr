@@ -54,7 +54,7 @@ predictionarrays = model.predict(user_images, verbose=0, batch_size=1)
 
 predictions = []
 for i in predictionarrays:
-    predictions.append(np.argmax(i)+1)
+    predictions.append(np.argmax(i))
 
 print('''
           _____                    _____            _____                    _____                _____          
@@ -123,7 +123,7 @@ def plot_image(i, predictions_array, img):
     plt.yticks([])
 
     plt.imshow(img, cmap=plt.cm.binary)
-    predicted_label = np.argmax(predictions_array)+1
+    predicted_label = np.argmax(predictions_array)
 
     plt.xlabel("{} {:2.0f}% ({})".format(
         class_names[predicted_label], 100*np.max(predictions_array), class_names[predicted_label]))
@@ -136,7 +136,7 @@ def plot_value_array(i, predictions_array):
     plt.yticks([])
     thisplot = plt.bar(range(15), predictions_array, color="blue")
     plt.ylim([0, 1])
-    predicted_label = np.argmax(predictions_array)+1
+    predicted_label = np.argmax(predictions_array)
 
     thisplot[predicted_label].set_color('red')
 
