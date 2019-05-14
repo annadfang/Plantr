@@ -1,0 +1,36 @@
+body {
+  background: #eee;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+svg {
+  width: 100%;
+  height: 100%;  
+  position: absolute;
+}
+
+button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  
+  background: yellowgreen;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 10px 16px;
+  font-weight: bold;  
+  color: #222;
+  transition: all 0.1s;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:hover {
+    border: 1px solid rgba(0,0,0,0.5);
+    color: black;
+  }
+}

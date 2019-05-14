@@ -64,10 +64,10 @@ def flip_both(image):
     return new_img
 
 
-with open('Documents/Plantr/data_arrays/my_image_dataset', 'rb') as data:
+with open('../data_arrays/my_image_dataset', 'rb') as data:
     all_final_images = pickle.load(data)
 
-with open('Documents/Plantr/data_arrays/my_label_dataset', 'rb') as data:
+with open('../data_arrays/my_label_dataset', 'rb') as data:
     all_image_labels = pickle.load(data)
 
 
@@ -77,8 +77,8 @@ for i in range(len(all_image_labels)):
     all_final_images.append(random_brightness(all_final_images[i]))
     all_final_images.append(zoom(all_final_images[i]))
 
-with open('Documents/Plantr/data_arrays/my_augmented_image_dataset', 'wb') as output:
+with open('../data_arrays/my_augmented_image_dataset', 'wb') as output:
     pickle.dump(all_final_images, output)
 
-with open('Documents/Plantr/data_arrays/my_augmented_label_dataset', 'wb') as output:
+with open('../data_arrays/my_augmented_label_dataset', 'wb') as output:
     pickle.dump(all_image_labels, output)
