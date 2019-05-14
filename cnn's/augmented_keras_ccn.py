@@ -10,13 +10,13 @@ import pickle
 
 batch_size = 32
 num_classes = 15
-epochs = 9
+epochs = 10
 img_x, img_y = 224, 224
 
-with open('Documents/Plantr/data_arrays/my_image_dataset', 'rb') as data:
+with open('Documents/Plantr/data_arrays/my_augmented_image_dataset', 'rb') as data:
     all_final_images = pickle.load(data)
 
-with open('Documents/Plantr/data_arrays/my_label_dataset', 'rb') as data:
+with open('Documents/Plantr/data_arrays/my_augmented_label_dataset', 'rb') as data:
     all_image_labels = pickle.load(data)
 
 class_names = ("aloe_vera", "arrowhead_plant", "boston_fern",
@@ -27,10 +27,14 @@ class_names = ("aloe_vera", "arrowhead_plant", "boston_fern",
 
 class_labels = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 
-train_images = np.asarray(all_final_images[:530])
-train_labels = all_image_labels[:530]
-test_images = np.asarray(all_final_images[530:])
-test_labels = all_image_labels[530:]
+train_images = np.asarray(all_final_images[:530]+all_final_images[663:1194] +
+                          all_final_images[1327:1858])
+train_labels = (all_image_labels[:530]+all_image_labels[663:1194] +
+                all_image_labels[1327:1858])
+test_images = np.asarray(all_final_images[530:663]+all_final_images[1194:1327] +
+                         all_final_images[1858:])
+test_labels = (all_image_labels[530:663]+all_image_labels[1194:1327] +
+               all_image_labels[1858:])
 
 train_images = train_images.reshape(train_images.shape[0], img_x, img_y, 1)
 test_images = test_images.reshape(test_images.shape[0], img_x, img_y, 1)
@@ -53,7 +57,7 @@ model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 model.add(Conv2D(64, (5, 5), activation='relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
-model.add(Dense(100, activation='relu'))
+model.add(Dense(300, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy,

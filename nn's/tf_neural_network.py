@@ -9,10 +9,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pickle
 
-with open('my_image_dataset', 'rb') as data:
+with open('Documents/Plantr/data_arrays/my_image_dataset', 'rb') as data:
     all_final_images = pickle.load(data)
 
-with open('my_label_dataset', 'rb') as data:
+with open('Documents/Plantr/data_arrays/my_label_dataset', 'rb') as data:
     all_image_labels = pickle.load(data)
 
 class_names = ("aloe_vera", "arrowhead_plant", "boston_fern",
@@ -39,9 +39,11 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=100)
+model.fit(train_images, train_labels, epochs=5)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels)
+
+model.save('Documents/Plantr/models/nparrays_nn_model.h5')
 
 print('Test accuracy:', test_acc)
 
