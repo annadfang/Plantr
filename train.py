@@ -148,11 +148,7 @@ def process_image(image_path):
     
     # Turn image into numpy array
     img = np.array(img)
-    
-    # Make the color channel dimension first instead of last
     img = img.transpose((2, 0, 1))
-    
-    # Make all values between 0 and 1
     img = img/255
     
     # Normalize based on the preset mean and standard deviation
@@ -170,22 +166,12 @@ def process_image(image_path):
 
    # Using our model to predict the label
 def predict(image, model):
-    # Pass the image through our model
     output = model.forward(image)
-    
-    # Reverse the log function in our output
     output = torch.exp(output)
-    
-    # Get the top predicted class, and the output percentage for
-    # that class
     probs, classes = output.topk(1, dim=1)
     return probs.item(), classes.item()
 
-
-
-    # Show Image
 def show_image(image):
-    # Convert image to numpy
     image = image.numpy()
     
     # Un-normalize the image
@@ -199,9 +185,6 @@ def show_image(image):
 
     # Process Image
 image = process_image("plant_imgs/test_image.jpg")
-# Give image to model to predict output
 top_prob, top_class = predict(image, model)
-# Show the image
 show_image(image)
-# Print the results
 print("The model is ", top_prob*100, "% certain that the image has a predicted class of ", top_class  )

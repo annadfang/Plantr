@@ -25,6 +25,16 @@ class_names = ("aloe_vera", "arrowhead_plant", "boston_fern",
                "parlor_palm", "peace_lily", "sago_palm",
                "snake_plant", "spider_plant", "venus_fly_trap")
 
+class_care = ("bright indirect sunlight, water deeply but infrequently, keep in temperatures(F) between 55 and 80", 
+              "bright indirect sunlight, let soil dry out slightly between waterings and water less during winter", 
+              "keep in cool temperatures with high humidity and indirect sunlight, keep soil damp constantly",
+               "medium light with protection from midday sun, keep humidity very high, water when soil is dry to touch", 
+               "water thoroughly only when soil is dry to touch, keep in temperatures(F) above 60", 
+               "requires high humidity, only give indirect sun, water regularly",
+               "jade_plant", "lucky_bamboo", "money_tree",
+               "parlor_palm", "peace_lily", "sago_palm",
+               "snake_plant", "spider_plant", "venus_fly_trap")
+
 class_labels = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 
 train_images = np.asarray(all_final_images[:530]+all_final_images[663:1194] +
