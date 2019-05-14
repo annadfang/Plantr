@@ -34,7 +34,7 @@ def rgb_gray(rgb):
 
 data_root = pathlib.Path("/home/jamie/Documents/Plantr/user_input_images")
 
-all_image_paths = list(data_root.glob('*/*'))
+all_image_paths = list(data_root.glob('**/*.jpg'))
 all_image_paths = [str(path) for path in all_image_paths]
 
 tf.InteractiveSession()
