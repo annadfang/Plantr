@@ -7,50 +7,39 @@ from tensorflow import keras
 # Helper libraries
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
-print(tf.__version__)
+with open('my_image_dataset', 'rb') as data:
+    all_final_images = pickle.load(data)
 
-fashion_mnist = keras.datasets.fashion_mnist
+with open('my_label_dataset', 'rb') as data:
+    all_image_labels = pickle.load(data)
 
-(train_images, train_labels), (test_images,
-                               test_labels) = fashion_mnist.load_data()
+class_names = ("aloe_vera", "arrowhead_plant", "boston_fern",
+               "caladium_plant", "croton_plant", "elephants_ear_plant",
+               "jade_plant", "lucky_bamboo", "money_tree",
+               "parlor_palm", "peace_lily", "sago_palm",
+               "snake_plant", "spider_plant", "venus_fly_trap")
 
-class_names = ["money tree plant",
-               "spider plant",
-               "aloe vera plant",
-               "peace lily",
-               "arrowhead plant",
-               "snake plant",
-               "boston fern",
-               "croton plant",
-               "elephants ear plant",
-               "caladium plant",
-               "lucky bamboo",
-               "parlor palm",
-               "sago palm",
-               "venus fly trap",
-               "jade plant",
-               "flaming katy succulent",
-               "poinsettia plant",
-               "golden pothos plant",
-               "weeping fig plant",
-               "english ivy plant"]
+class_labels = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14)
 
-train_images = train_images / 255.0
-
-test_images = test_images / 255.0
+train_images = np.asarray(all_final_images[:600])
+train_labels = all_image_labels[:600]
+test_images = np.asarray(all_final_images[600:])
+test_labels = all_image_labels[600:]
 
 model = keras.Sequential([
-    keras.layers.Flatten(input_shape=(28, 28)),
-    keras.layers.Dense(128, activation=tf.nn.relu),
-    keras.layers.Dense(10, activation=tf.nn.softmax)
+    keras.layers.Flatten(input_shape=(224, 224)),
+    keras.layers.Dense(200, activation=tf.nn.relu),
+    keras.layers.Dropout(0.3),
+    keras.layers.Dense(15, activation=tf.nn.softmax)
 ])
 
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_images, train_labels, epochs=5)
+model.fit(train_images, train_labels, epochs=100)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 
@@ -84,7 +73,7 @@ def plot_value_array(i, predictions_array, true_label):
     plt.grid(False)
     plt.xticks([])
     plt.yticks([])
-    thisplot = plt.bar(range(10), predictions_array, color="#777777")
+    thisplot = plt.bar(range(15), predictions_array, color="#777777")
     plt.ylim([0, 1])
     predicted_label = np.argmax(predictions_array)
 
